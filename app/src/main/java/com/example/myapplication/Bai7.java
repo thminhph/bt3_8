@@ -22,17 +22,18 @@ import java.util.List;
 
 public class Bai7 extends AppCompatActivity {
 
-    EditText edtMa,edtTenSp,edtGiasp;
+    EditText edtMa, edtTenSp, edtGiasp;
     Spinner spLoaiSP;
     List<String> data_LSP = new ArrayList<>();
     ArrayAdapter adapter_LSP;
     ImageView ivHinh;
     List<SanPham> data_SP = new ArrayList<>();
     ArrayAdapter adapter_SP;
-    Button btnThem,btnXoa ,btnSua,btnThoat;
+    Button btnThem, btnXoa, btnSua, btnThoat;
     ListView lvSanPham;
     int index = -1;
     Button btnHome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +44,9 @@ public class Bai7 extends AppCompatActivity {
 
     private void setEvent() {
         KhoiTao();
-        adapter_LSP = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item ,data_LSP);
+        adapter_LSP = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, data_LSP);
         spLoaiSP.setAdapter(adapter_LSP);
-        adapter_SP = new ArrayAdapter(this,android.R.layout.simple_list_item_1,data_SP );
+        adapter_SP = new ArrayAdapter(this, android.R.layout.simple_list_item_1, data_SP);
         lvSanPham.setAdapter(adapter_SP);
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,20 +86,18 @@ public class Bai7 extends AppCompatActivity {
                 edtMa.setText(sanpham.getMaSP());
                 edtTenSp.setText(sanpham.getTenSP());
                 edtGiasp.setText(sanpham.getGiaSP());
-                if(sanpham.getLoaiSP().equals("san pham 1"))
+                if (sanpham.getLoaiSP().equals("san pham 1"))
                     spLoaiSP.setSelection(0);
-                if(sanpham.getLoaiSP().equals("san pham 2"))
+                if (sanpham.getLoaiSP().equals("san pham 2"))
                     spLoaiSP.setSelection(1);
-                if(sanpham.getLoaiSP().equals("san pham 3"))
+                if (sanpham.getLoaiSP().equals("san pham 3"))
                     spLoaiSP.setSelection(2);
             }
         });
         btnXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(index == -1)
-
-                {
+                if (index == -1) {
                     Toast.makeText(Bai7.this, "ban chua chon san phan nao", Toast.LENGTH_SHORT).show();
                 }
                 data_SP.remove(index);
@@ -117,18 +116,15 @@ public class Bai7 extends AppCompatActivity {
         spLoaiSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(spLoaiSP.getSelectedItem().equals("san pham 1"))
-                {
+                if (spLoaiSP.getSelectedItem().equals("san pham 1")) {
                     ivHinh.setImageResource(R.drawable.htc);
                 }
 
-                if(spLoaiSP.getSelectedItem().equals("san pham 2"))
-                {
+                if (spLoaiSP.getSelectedItem().equals("san pham 2")) {
                     ivHinh.setImageResource(R.drawable.samsung);
                 }
 
-                if(spLoaiSP.getSelectedItem().equals("san pham 3"))
-                {
+                if (spLoaiSP.getSelectedItem().equals("san pham 3")) {
                     ivHinh.setImageResource(R.drawable.oppo);
                 }
             }
@@ -142,19 +138,19 @@ public class Bai7 extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Bai7.this, MainActivity.class);
+                Intent intent = new Intent(Bai7.this, MainActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    private void  KhoiTao()
-    {
+    private void KhoiTao() {
         data_LSP.add("san pham 1");
         data_LSP.add("san pham 2");
         data_LSP.add("san pham 3");
 
     }
+
     private void setControl() {
         edtMa = findViewById(R.id.edtMa);
         edtTenSp = findViewById(R.id.edtTen);
@@ -166,6 +162,6 @@ public class Bai7 extends AppCompatActivity {
         btnSua = findViewById(R.id.btnSua);
         btnThoat = findViewById(R.id.btnThoat);
         lvSanPham = findViewById(R.id.lvSanPham);
-        btnHome=findViewById(R.id.btnChuyen);
+        btnHome = findViewById(R.id.btnChuyen);
     }
 }
